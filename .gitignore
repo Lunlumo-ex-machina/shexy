@@ -1,0 +1,5 @@
+build/
+misc/
+.cache
+index.html
+compile_commands.json
