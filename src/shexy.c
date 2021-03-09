@@ -23,16 +23,21 @@ static struct argp_option options[] = {
 	{0}
 }; 
 
+/* Argument parser */
 argp_t argp = {options, parse_opt, args_doc, doc};
 
+/* Reemplace all non-printable character with a dot */
 static inline char8_t sanitize(char8_t ch) {
 	return isprint(ch)? ch: '.';
 }
 
+/* Print n white spaces */
 static inline void print_spaces(int n) {
 	printf("%*s", n, "");
 }
 
+/* print_bin, print_oct, print_dec and print_hex are user to print the data
+ * in diferent formats*/
 static inline void print_bin(char8_t ch) {
 	for (int i = 0; i < 8; i++) {
 		(ch & 1)? printf("1"): printf("0");
@@ -52,13 +57,14 @@ static inline void print_hex(char8_t ch) {
 	printf("%02X", ch);
 }
 
+/* Generate a colorful output */
 void print_color(arg_formats_t format, char8_t *buf, int buf_len, size_t sz, size_t offset) {
-	static color_char_t color;
+	static color_char_t color; // Structure to store the color
 	int mid = buf_len / 2;
 	bool iseven = !(buf_len % 2);
-	static unsigned int utf8_state[2] = {0, 0};
+	static unsigned int utf8_state[2] = {0, 0}; // Stores the number of bytes of the UTF-8 encodeing. {hex (or other format), ascii}
 	int padding;
-	void (*fun)(char8_t);
+	void (*fun)(char8_t); // Calls a print function
 
 	switch (format) {
 		case BIN:
@@ -90,11 +96,15 @@ void print_color(arg_formats_t format, char8_t *buf, int buf_len, size_t sz, siz
 			printf(" ");
 		}
 
+		/* Sets the foreground and the background colors */
 		printf("\x1B[38;5;%dm\x1B[48;5;%dm", color.foreground, color.background);
 		fun(buf[i]);
+
+		/* Return to the default color */
 		printf("\x1B[m");
 		print_spaces(1);
 	}
+
 	print_spaces((buf_len - sz) * padding);
 	if (iseven && sz < mid) {
 		print_spaces(1);
@@ -159,13 +169,14 @@ void print_bw(arg_formats_t format, char8_t *buf, int buf_len, size_t sz, size_t
 
 int main(int argc, char **argv) {
 
+	/* Default arguments */
 	arguments_t arguments;
-	arguments.color = false;
-	arguments.format = HEX;
-	arguments.len = 0;
-	arguments.cols = 16;
-	arguments.skip = 0;
-	arguments.input = "-";
+	arguments.color = false; // Color mode
+	arguments.format = HEX; // Format of the output
+	arguments.len = 0; // Number of bytes to read
+	arguments.cols = 16; // Number of colums to display per line
+	arguments.skip = 0; // Number of bytes to skip
+	arguments.input = "-"; // The input to read.
 
 	argp_parse(&argp, argc, argv, 0, 0, &arguments);
 
@@ -176,10 +187,12 @@ int main(int argc, char **argv) {
 	 	buf_len = (arguments.format == BIN)? 8: 16;
 	}
 
+	/* Checks if the input is a filepath otherwise treats it as a string */
 	FILE *in = fopen(arguments.input, "rb");
 	if (!in) {
 		in = fmemopen(arguments.input, strlen(arguments.input), "r");
 	} 
+
 	if (arguments.skip) {
 		fseek(in, arguments.skip, SEEK_SET);
 	}
@@ -187,10 +200,9 @@ int main(int argc, char **argv) {
 	void (*fun)(arg_formats_t, char8_t *, int, size_t, size_t) = arguments.color? print_color: print_bw;
 
 	char8_t buf[buf_len];
-	size_t bytes_read;
-	size_t offset = 0;
-	int bytes_to_read = (!arguments.len || arguments.len >= buf_len)? buf_len: arguments.len;
-	int chunks = arguments.len / buf_len;
+	size_t bytes_read; // Number of bytes read
+	size_t offset = 0; // Number of the actual offset
+	int bytes_to_read = (!arguments.len || arguments.len >= buf_len)? buf_len: arguments.len; // Number of bytes to read
 	while ((bytes_read = fread(buf, 1, bytes_to_read, in))) {
 		fun(arguments.format, buf, buf_len, bytes_read, offset);
 		if (bytes_to_read < buf_len) {
