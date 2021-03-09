@@ -1,19 +1,40 @@
 #include "shexy.h"
 
 const char *argp_program_version = "0.1";
-const char *argp_program_bug_address = "nowhere";
-static char doc[] = "Shexy is a data-viewer written in C.\
-					 \vExamples:\
-					 \nshexy -c who_is_rem.txt // Prints the file text with a colorful output.\
-					 \nshexy -f bin bokita.log // Prints bokita.log in binary format.\
-					 \nshexy -s 4 la_torta_es_un_chamullo.pdf // Skips the first 4 bytes.\
-					 \n\
-					 \nYou can use the next formats:\
-					 \nbinary: b, bin, binary\
-					 \noctal: o, oct, octal\
-					 \ndecimal: d, dec, decimal\
-					 \nhexadecimal: h, hex, hexadecimal";
-static char args_doc[] = "[FILE]...";
+const char *argp_program_bug_address = "https://github.com/Lunlumo-ex-machina/shexy/issues";
+static char doc[] = "\n"
+					" .d8888b.  888\n"
+					"d88P  Y88b 888\n"
+					"Y88b.      888\n"
+					" \"Y888b.   88888b.   .d88b.  888  888 888  888\n"
+					"    \"Y88b. 888 \"88b d8P  Y8b `Y8bd8P\' 888  888\n"
+					"      \"888 888  888 88888888   X88K   888  888\n"
+					"Y88b  d88P 888  888 Y8b.     .d8\"\"8b. Y88b 888\n"
+					" \"Y8888P\"  888  888  \"Y8888  888  888  \"Y88888\n"
+					"                                           888\n"
+					"                                      Y8b d88P\n"
+					"                                       \"Y88P\" \n"
+					"\n"
+					"Shexy is a sexy hexdump written in C _(┐「ε:)_\n"
+					"\v"
+					"Examples:\n"
+					"\tshexy -c who_is_rem.txt // Prints the file text with a colorful output.\n"
+					"\tshexy -f bin bokita.log // Prints bokita.log in binary format.\n"
+					"\tshexy -s 4 la_torta_es_un_chamullo.pdf // Skips the first 4 bytes.\n"
+					"\n"
+					"Shexy supports the next formats:\n"
+					"\t+--------------+----------------------+\n"
+					"\t|    format    |       argument       |\n"
+					"\t+--------------+----------------------+\n"
+					"\t| binary       | b, bin, binary       |\n"
+					"\t+--------------+----------------------+\n"
+					"\t| octal        | o, oct, octal        |\n"
+					"\t+--------------+----------------------+\n"
+					"\t| decima       | d, dec, decimal      |\n"
+					"\t+--------------+----------------------+\n"
+					"\t| hexadecimal  | h, hex, hexadecimal  |\n"
+					"\t+--------------+----------------------+";
+static char args_doc[] = "[FILE]";
 static struct argp_option options[] = {
 	{"color",  'c', 0,        0, "Display data with color."},
 	{"format", 'f', "FORMAT", 0, "Set output format (binary, octal, decimal or hexadecimal)."},
@@ -179,6 +200,10 @@ int main(int argc, char **argv) {
 	arguments.input = "-"; // The input to read.
 
 	argp_parse(&argp, argc, argv, 0, 0, &arguments);
+
+	if (arguments.cols < 1 || arguments.len < 0 || arguments.skip < 0) {
+		return 1;
+	}
 
 	int buf_len;
 	if (arguments.cols != 16) {
