@@ -1,42 +1,42 @@
 # Shexy
-### セクシーなエクスダンプ　\_(:3」∠)\_
+### セクシーなヘックスダンプ　\_(:3」∠)\_
 
 ---
 
-[Español](readmes/README-es.md) | [Portugês](readmes/README-pt.md) | [日本語](readmes/README-jp.md)
+[English](../README.md) | [Español](README-es.md) | [Portugês](README-pt.md)
 
 
-Shexy es un visor de datos escrito en C.
+ShexyはCで書かれたヘックスダンプ。
 
 
-## Ejemplos:
+## 例：
 
 
-Salida normal:
+普通の出力：
 
 
 ![Black and white](images/shexy_bw.png)
 
 
-Ahora con color:
+今、カラフルな出力:
 
 
 ![Color](images/shexy_color.png)
 
 
-Shexy tambien puede leer desde el stream:
+Shexyもストリームから読めます:
 
 
 ![Stdin](images/shexy_stdin.png)
 
 
-Y puede imprimir en diferentes formatos:
+そして、色々なフォーマットは見さられます。
 
 
 ![Octal](images/shexy_octal.png)
 
 
-Podes usar los siguientes formatos:
+次のフォーマットは使えます：
 - b, bin, binary
 - o, oct, octal 
 - d, dec, decimal

@@ -6,7 +6,7 @@
 [Español](readmes/README-es.md) | [Portugês](readmes/README-pt.md) | [日本語](readmes/README-jp.md)
 
 
-Shexy is a data viewer written in C.
+Shexy is a hexdump written in C.
 
 
 ## Examples:
@@ -24,19 +24,19 @@ Now with color:
 ![Color](images/shexy_color.png)
 
 
-Shexy also reads from stream:
+Shexy also reads from the stream:
 
 
 ![Stdin](images/shexy_stdin.png)
 
 
-And you can print the data in other formats:
+And it can show other formats:
 
 
 ![Octal](images/shexy_octal.png)
 
 
-You can use these formats:
+It can use these formats:
 - b, bin, binary
 - o, oct, octal 
 - d, dec, decimal

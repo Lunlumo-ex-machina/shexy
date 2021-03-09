@@ -6,37 +6,37 @@
 [Español](README-es.md) | [English](../README.md) | [日本語](README-jp.md)
 
 
-Shexy é um visor de dados escrito em C.
+Shexy é um hexdump escrito em C.
 
 
 ## Ejemplos:
 
 
-Saida normal:
+Saída normal:
 
 
 ![Black and white](images/shexy_bw.png)
 
 
-Agora com color: 
+Agora com cor: 
 
 
 ![Color](images/shexy_color.png)
 
 
-Shexy tambem pode lêr desde o stream:
+Shexy também pode ler desde o stream:
 
 
 ![Stdin](images/shexy_stdin.png)
 
 
-E pode imprimir em diferentes formatos:
+E pode mostrar diferentes formatos:
 
 
 ![Octal](images/shexy_octal.png)
 
 
-Pode usar os siguientes formatos:
+Pode usar os seguintes formatos:
 - b, bin, binary
 - o, oct, octal 
 - d, dec, decimal

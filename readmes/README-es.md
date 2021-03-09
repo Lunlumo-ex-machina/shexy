@@ -3,10 +3,10 @@
 
 ---
 
-[Español](readmes/README-es.md) | [Portugês](readmes/README-pt.md) | [日本語](readmes/README-jp.md)
+[English](README.md) | [Portugês](readmes/README-pt.md) | [日本語](readmes/README-jp.md)
 
 
-Shexy es un visor de datos escrito en C.
+Shexy es un hexdump escrito en C.
 
 
 ## Ejemplos:
@@ -30,13 +30,13 @@ Shexy tambien puede leer desde el stream:
 ![Stdin](images/shexy_stdin.png)
 
 
-Y puede imprimir en diferentes formatos:
+Y puede mostrar diferentes formatos:
 
 
 ![Octal](images/shexy_octal.png)
 
 
-Pode usar los siguientes formatos:
+Puede usar los siguientes formatos:
 - b, bin, binary
 - o, oct, octal 
 - d, dec, decimal
