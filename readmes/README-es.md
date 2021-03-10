@@ -3,7 +3,7 @@
 
 ---
 
-[English](README.md) | [Portugês](readmes/README-pt.md) | [日本語](readmes/README-jp.md)
+[English](../README.md) | [Portugês](README-pt.md) | [日本語](README-jp.md)
 
 
 Shexy es un hexdump escrito en C.
