@@ -15,7 +15,7 @@ static char doc[] = "\n"
 					"                                      Y8b d88P\n"
 					"                                       \"Y88P\" \n"
 					"\n"
-					"Shexy is a sexy hexdump written in C _(┐「ε:)_\n"
+					"_(:3」∠)_ Shexy is a sexy hexdump written in C _(┐「ε:)_\n"
 					"\v"
 					"Examples:\n"
 					"\tshexy -c who_is_rem.txt // Prints the file text with a colorful output.\n"
@@ -33,7 +33,9 @@ static char doc[] = "\n"
 					"\t| decima       | d, dec, decimal      |\n"
 					"\t+--------------+----------------------+\n"
 					"\t| hexadecimal  | h, hex, hexadecimal  |\n"
-					"\t+--------------+----------------------+";
+					"\t+--------------+----------------------+\n"
+					"\n"
+					"MIT License Copyright (c) 2021 Lunlumo-ex-machina";
 static char args_doc[] = "[FILE]";
 static struct argp_option options[] = {
 	{"color",  'c', 0,        0, "Display data with color."},

@@ -1,5 +1,5 @@
 # Shexy
-### O hexdump sexy　\_(:3」∠)\_
+### \_(:3」∠)\_ O sexy hexdump \_(┐「ε:)\_
 
 ---
 
