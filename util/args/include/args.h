@@ -16,9 +16,9 @@ typedef enum {
 } arg_formats_t;
 
 typedef struct {
-	unsigned int cols;
-	unsigned int len;
-	unsigned int skip;
+	int cols;
+	int len;
+	int skip;
 	bool color;
 	bool version;
 	arg_formats_t format;
