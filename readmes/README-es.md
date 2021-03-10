@@ -15,25 +15,25 @@ Shexy es un hexdump escrito en C.
 Salida normal:
 
 
-![Black and white](images/shexy_bw.png)
+![Black and white](../images/shexy_bw.png)
 
 
 Ahora con color: 
 
 
-![Color](images/shexy_color.png)
+![Color](../images/shexy_color.png)
 
 
 Shexy tambien puede leer desde el stream:
 
 
-![Stdin](images/shexy_stdin.png)
+![Stdin](../images/shexy_stdin.png)
 
 
 Y puede mostrar diferentes formatos:
 
 
-![Octal](images/shexy_octal.png)
+![Octal](../images/shexy_octal.png)
 
 
 Puede usar los siguientes formatos:
