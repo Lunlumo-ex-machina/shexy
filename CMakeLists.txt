@@ -2,7 +2,10 @@ cmake_minimum_required(VERSION 3.19)
 project(Shexy)
 
 # set the variables
-set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_BUILD_TYPE None)
+set(CMAKE_C_FLAGS "-O2")
+set(CMAKE_INSTALL_PREFIX /usr)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${Shexy_BINARY_DIR}/bin)
 set(RUNTIME_OUTPUT_NAME shexy)
 set(UTIL_DIR ${Shexy_SOURCE_DIR}/util)
 set(UTIL_COLOR_DIR ${UTIL_DIR}/color)
@@ -14,7 +17,7 @@ add_subdirectory(src)
 add_subdirectory(util)
 
 # install target
-install(TARGETS ${RUNTIME_OUTPUT_NAME} CONFIGURATIONS Release RUNTIME DESTINATION bin)
+install(TARGETS ${RUNTIME_OUTPUT_NAME} RUNTIME DESTINATION bin)
 
 # uninstall target
 if(NOT TARGET uninstall)
