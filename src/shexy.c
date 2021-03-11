@@ -209,10 +209,14 @@ int main(int argc, char **argv) {
 	}
 
 	/* Checks if the input is a filepath otherwise treats it as a string */
-	FILE *in = fopen(arguments.input, "rb");
-	if (!in) {
-		in = fmemopen(arguments.input, strlen(arguments.input), "r");
-	} 
+	FILE *in;
+	if (!strcmp(arguments.input, "-")) {
+		in = stdin;
+	} else {
+		if (!(in = fopen(arguments.input, "r"))) {
+			in = fmemopen(arguments.input, strlen(arguments.input), "r");
+		}
+	}
 
 	if (arguments.skip) {
 		fseek(in, arguments.skip, SEEK_SET);
