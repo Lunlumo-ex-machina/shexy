@@ -110,13 +110,10 @@ void print_color(arg_formats_t format, char8_t *buf, int buf_len, size_t sz, siz
 
 	printf("%08zX| ", offset);
 
-	for (int i = 0; i < sz; i++, utf8_state[0]--) {
-		if (!utf8_state[0]) {
-			utf8_state[0] = utf8_len(buf[i]);
-			color = colorof(buf[i]);
-		}
+	for (int i = 0; i < sz; i++) {
+		color = colorof(buf[i]);
 		if (iseven && i == mid) {
-			printf(" ");
+			print_spaces(1);
 		}
 
 		/* Sets the foreground and the background colors */
@@ -133,11 +130,8 @@ void print_color(arg_formats_t format, char8_t *buf, int buf_len, size_t sz, siz
 		print_spaces(1);
 	}
 	printf("|");
-	for (int i = 0; i < sz; i++, utf8_state[1]--) {
-		if (!utf8_state[1]) {
-			utf8_state[1] = utf8_len(buf[i]);
-			color = colorof(buf[i]);
-		}
+	for (int i = 0; i < sz; i++) {
+		color = colorof(buf[i]);
 		printf("\x1B[38;5;%dm\x1B[48;5;%dm%c\x1B[m", color.foreground, color.background, sanitize(buf[i]));
 	}
 	print_spaces(buf_len - sz);

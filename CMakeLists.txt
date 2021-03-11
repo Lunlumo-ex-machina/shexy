@@ -9,7 +9,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${Shexy_BINARY_DIR}/bin)
 set(RUNTIME_OUTPUT_NAME shexy)
 set(UTIL_DIR ${Shexy_SOURCE_DIR}/util)
 set(UTIL_COLOR_DIR ${UTIL_DIR}/color)
-set(UTIL_UTF8_DIR ${UTIL_DIR}/utf8)
 set(UTIL_ARGS_DIR ${UTIL_DIR}/args)
 
 # call others CMakeLists
