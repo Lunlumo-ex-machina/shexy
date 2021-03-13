@@ -21,8 +21,8 @@ add_custom_command(OUTPUT ${MAN}.gz COMMAND gzip ${MAN} DEPENDS ${MAN} VERBATIM)
 
 # install target
 install(TARGETS ${RUNTIME_OUTPUT_NAME} RUNTIME DESTINATION bin)
-#add_custom_target(gzip_man ALL DEPENDS ${MAN})
-install(TARGETS ${MAN} DESTINATION ${MAN_INSTALL_DIR}/man1)
+add_custom_target(gzip_man ALL DEPENDS ${MAN})
+install(FILES ${MAN} DESTINATION ${MAN_INSTALL_DIR}/man1)
 
 # uninstall target
 if(NOT TARGET uninstall)
