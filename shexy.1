@@ -1,26 +1,55 @@
+.de CW
+.sp
+.nf
+.ft CW
+..
+.de CE
+.ft
+.fi
+.sp
+..
 .TH Shexy 1
 .SH NAME
 Shexy
 .SH SYNOPSIS
-.B shexy [OPTIONS]... [FILE]
+\fBshexy\fP [\fBBOPTIONS\fP]... [\fBFILE\fP]
 .SH DESCRIPTION
 Shexy is a hex-dump viewer witten in C.
 .SH OPTIONS
-.B \-c 
+\fB\-c\fP, \fB\-\-color\fP
 Display data with color.
 .TP
-.B \-f
-Set the output format (binary, octal, decimar or hexadecimal).
+\fB\-f\fP, \fB\-\-format\fP \fIformat\/\fP
+Set the output \fIformat\/\fP (binary, octal, decimar or hexadecimal).
 .TP
-.B \-l
-Number of colums per line.
+\fB\-h\fP, \fB\-?\fP, \fB\-\-help\fP
+Display this help text.
 .TP
-.B \-n
-Number of bytes to read.
+\fB\-l\fP, \fB\-\-columns\fP \fIcolumns\/\fP
+Number of \fIcolums\/\fP per line.
 .TP
-.B \-s
-Number of bytes to skip.
-.SH USAGE
-.SH SEE ALSO
+\fB\-n\fP, \fB\-\-length\fP \fIlenght\/\fP
+Print only \fIlenght\/\fP bytes.
+.TP
+\fB\-s\fP, \fB\-\-skip\fP \fIoffset\/\fP
+Skip \fIoffset\/\fP bytes from the beginning of the input.
+.TP
+\fB\-v\fP, \fB\-\-version\fP
+Display version information.
+.SH EXAMPLES
+Some sexy examples:
+.CW
+# Print the file text with a colorful output. 
+$ shexy -c who_is_rem.txt
+
+# Print bokita.log in binary format.
+$ shexy -f bin bokita.log
+
+# Skip the first 4 bytes.
+$ shexy -s 4 la_torta_es_un_chamullo.pdf
+
+.CE
 .SH BUGS
+GitHub: https://www.github.com/lunlumo-ex-machina/shexy/issues
 .SH AUTHOR
+The magnificent Lunlumo.

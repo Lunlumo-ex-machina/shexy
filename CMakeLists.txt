@@ -7,6 +7,8 @@ set(CMAKE_C_FLAGS "-O2")
 set(CMAKE_INSTALL_PREFIX /usr)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${Shexy_BINARY_DIR}/bin)
 set(RUNTIME_OUTPUT_NAME shexy)
+set(MAN ${Shexy_SOURCE_DIR}/shexy.1)
+set(MAN_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/share/man)
 set(UTIL_DIR ${Shexy_SOURCE_DIR}/util)
 set(UTIL_COLOR_DIR ${UTIL_DIR}/color)
 set(UTIL_ARGS_DIR ${UTIL_DIR}/args)
@@ -15,8 +17,12 @@ set(UTIL_ARGS_DIR ${UTIL_DIR}/args)
 add_subdirectory(src)
 add_subdirectory(util)
 
+add_custom_command(OUTPUT ${MAN}.gz COMMAND gzip ${MAN} DEPENDS ${MAN} VERBATIM)
+
 # install target
 install(TARGETS ${RUNTIME_OUTPUT_NAME} RUNTIME DESTINATION bin)
+#add_custom_target(gzip_man ALL DEPENDS ${MAN})
+install(TARGETS ${MAN} DESTINATION ${MAN_INSTALL_DIR}/man1)
 
 # uninstall target
 if(NOT TARGET uninstall)

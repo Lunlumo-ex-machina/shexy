@@ -4,6 +4,12 @@ error_t parse_opt(int key, char *arg, struct argp_state *state) {
 	arguments_t *arguments = state->input;
 
 	switch (key) {
+		case 'h':
+			argp_state_help(state, stdout, ARGP_HELP_LONG | ARGP_HELP_DOC | ARGP_HELP_BUG_ADDR | ARGP_HELP_EXIT_OK);
+			break;
+		case OPT_USG:
+			argp_usage(state);
+			break;
 		case 'c':
 			arguments->color = true;
 			break;
@@ -23,11 +29,14 @@ error_t parse_opt(int key, char *arg, struct argp_state *state) {
 		case 'l':
 			arguments->cols = strtol(arg, NULL, 10);
 			break;
+		case 'n':
+			arguments->len = strtol(arg, NULL, 10);
+			break;
 		case 's':
 			arguments->skip = strtol(arg, NULL, 10);
 			break;
-		case 'n':
-			arguments->len = strtol(arg, NULL, 10);
+		case ARGP_KEY_HELP_HEADER:
+			printf("hola");
 			break;
 		case ARGP_KEY_ARG:
 			if (state->arg_num > 0) {
@@ -41,3 +50,4 @@ error_t parse_opt(int key, char *arg, struct argp_state *state) {
 
 	return 0;
 }
+

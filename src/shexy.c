@@ -146,7 +146,7 @@ int main(int argc, char **argv) {
 	arguments.skip = 0; // Number of bytes to skip
 	arguments.input = "-"; // The input to read.
 
-	argp_parse(&argp, argc, argv, 0, 0, &arguments);
+	argp_parse(&argp, argc, argv, ARGP_NO_HELP, 0, &arguments);
 
 	if (arguments.cols < 1 || arguments.len < 0 || arguments.skip < 0) {
 		return 1;

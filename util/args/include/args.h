@@ -1,6 +1,8 @@
 #ifndef ARGS_H
 #define ARGS_H
 
+#define OPT_USG 1
+
 #include <argp.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -37,39 +39,45 @@ const static char doc[] = "\n"
 					"                                       \"Y88P\" \n"
 					"\n"
 					"_(:3」∠)_ Shexy is a sexy hexdump written in C _(┐「ε:)_\n"
+					"\n"
+					"Usage:\n"
+					"  shexy [OPTIONS...] [FILE]\n"
+					"\n"
+					"Options:\n"
 					"\v"
 					"Examples:\n"
-					"\tshexy -c who_is_rem.txt // Prints the file text with a colorful output.\n"
-					"\tshexy -f bin bokita.log // Prints bokita.log in binary format.\n"
-					"\tshexy -s 4 la_torta_es_un_chamullo.pdf // Skips the first 4 bytes.\n"
+					"  shexy -c who_is_rem.txt // Prints the file text with a colorful output.\n"
+					"  shexy -f bin bokita.log // Prints bokita.log in binary format.\n"
+					"  shexy -s 4 la_torta_es_un_chamullo.pdf // Skips the first 4 bytes.\n"
 					"\n"
 					"Shexy supports the next formats:\n"
-					"\t+--------------+----------------------+\n"
-					"\t|    format    |       argument       |\n"
-					"\t+--------------+----------------------+\n"
-					"\t| binary       | b, bin, binary       |\n"
-					"\t+--------------+----------------------+\n"
-					"\t| octal        | o, oct, octal        |\n"
-					"\t+--------------+----------------------+\n"
-					"\t| decima       | d, dec, decimal      |\n"
-					"\t+--------------+----------------------+\n"
-					"\t| hexadecimal  | h, hex, hexadecimal  |\n"
-					"\t+--------------+----------------------+\n"
+					"  +--------------+----------------------+\n"
+					"  |    format    |       argument       |\n"
+					"  +--------------+----------------------+\n"
+					"  | binary       | b, bin, binary       |\n"
+					"  +--------------+----------------------+\n"
+					"  | octal        | o, oct, octal        |\n"
+					"  +--------------+----------------------+\n"
+					"  | decima       | d, dec, decimal      |\n"
+					"  +--------------+----------------------+\n"
+					"  | hexadecimal  | h, hex, hexadecimal  |\n"
+					"  +--------------+----------------------+\n"
 					"\n"
-					"MIT License Copyright (c) 2021 Lunlumo-ex-machina";
-const static char args_doc[] = "[FILE]";
+					"MIT License Copyright (c) 2021 Lunlumo";
+const static char arg_doc[] = "[FILE]";
 static struct argp_option options[] = {
-	{"color",  'c', 0,        0, "Display data with color."},
-	{"format", 'f', "FORMAT", 0, "Set output format (binary, octal, decimal or hexadecimal)."},
-	{"length", 'n', "LENGTH", 0, "Only read N bytes from input."},
-	{"columns",'l', "COLS",   0, "Number of columns per line."},
-	{"skip",   's', "SKIP",   0, "Skip the first N bytes from input."},
+	{"help",       'h',    0,        0, "Displays the help page.",-1},
+	{"usage",  OPT_USG,    0,        0, "Display usage.", -1},
+	{"color",      'c',    0,        0, "Display data with color."},
+	{"format",     'f',    "FORMAT", 0, "Set output format (binary, octal, decimal or hexadecimal)."},
+	{"length",     'n',    "LENGTH", 0, "Only read N bytes from input."},
+	{"columns",    'l',    "COLS",   0, "Number of columns per line."},
+	{"skip",       's',    "SKIP",   0, "Skip the first N bytes from input."},
 	{0}
 }; 
 
-
 error_t parse_opt(int key, char *arg, struct argp_state *state);
 
-static struct argp argp = {options, parse_opt, args_doc, doc};
+static struct argp argp = {options, parse_opt, arg_doc, doc};
 
 #endif // ARGS_H
