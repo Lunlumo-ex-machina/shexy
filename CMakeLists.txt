@@ -4,11 +4,19 @@ project(Shexy)
 # set the variables
 set(CMAKE_BUILD_TYPE None)
 set(CMAKE_C_FLAGS "-O2")
-set(CMAKE_INSTALL_PREFIX /usr)
+find_program(LSB_RELEASE_EXEC lsb_release)
+execute_process(COMMAND ${LSB_RELEASE_EXEC} -is
+    OUTPUT_VARIABLE LSB_RELEASE_ID_SHORT
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+if (${LSB_RELEASE_ID_SHORT} STREQUAL "Arch") 
+	set(CMAKE_INSTALL_PREFIX /usr)
+	set(CMAKE_INSTALL_MANDIR /usr/share/man)
+endif()
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${Shexy_BINARY_DIR}/bin)
 set(RUNTIME_OUTPUT_NAME shexy)
-set(MAN ${Shexy_SOURCE_DIR}/shexy.1)
-set(MAN_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/share/man)
+set(IN_MAN ${Shexy_SOURCE_DIR}/shexy.1)
+set(OUT_MAN ${Shexy_BINARY_DIR}/shexy.1.gz)
 set(UTIL_DIR ${Shexy_SOURCE_DIR}/util)
 set(UTIL_COLOR_DIR ${UTIL_DIR}/color)
 set(UTIL_ARGS_DIR ${UTIL_DIR}/args)
@@ -17,12 +25,12 @@ set(UTIL_ARGS_DIR ${UTIL_DIR}/args)
 add_subdirectory(src)
 add_subdirectory(util)
 
-add_custom_command(OUTPUT ${MAN}.gz COMMAND gzip ${MAN} DEPENDS ${MAN} VERBATIM)
+add_custom_command(OUTPUT ${OUT_MAN} COMMAND gzip -c ${IN_MAN} > ${OUT_MAN} DEPENDS ${MAN})
 
 # install target
 install(TARGETS ${RUNTIME_OUTPUT_NAME} RUNTIME DESTINATION bin)
-add_custom_target(gzip_man ALL DEPENDS ${MAN})
-install(FILES ${MAN} DESTINATION ${MAN_INSTALL_DIR}/man1)
+add_custom_target(gzip_man ALL DEPENDS ${OUT_MAN})
+install(FILES ${OUT_MAN} DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
 
 # uninstall target
 if(NOT TARGET uninstall)
