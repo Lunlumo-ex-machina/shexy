@@ -66,10 +66,11 @@ const static char doc[] = "\n"
 					"MIT License Copyright (c) 2021 Lunlumo";
 const static char arg_doc[] = "[FILE]";
 static struct argp_option options[] = {
-	{"help",       'h',    0,        0, "Displays the help page.",-1},
+	{"help",       'h',    0,        0, "Display the help page.",-1},
 	{"usage",  OPT_USG,    0,        0, "Display usage.", -1},
+	{"version",    'v',    0,        0, "Display version.", -1},
 	{"color",      'c',    0,        0, "Display data with color."},
-	{"format",     'f',    "FORMAT", 0, "Set output format (binary, octal, decimal or hexadecimal)."},
+	{"format",     'f',    "FORMAT", 0, "Set the output format (binary, octal, decimal or hexadecimal)."},
 	{"length",     'n',    "LENGTH", 0, "Only read N bytes from input."},
 	{"columns",    'l',    "COLS",   0, "Number of columns per line."},
 	{"skip",       's',    "SKIP",   0, "Skip the first N bytes from input."},
