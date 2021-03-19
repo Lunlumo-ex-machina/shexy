@@ -1,5 +1,8 @@
 #include "shexy.h"
 
+const char *argp_program_version = "0.1";
+const char *argp_program_bug_address = "https://github.com/Lunlumo-ex-machina/shexy/issues";
+
 /* Reemplace all non-printable character with a dot */
 static inline char8_t sanitize(char8_t ch) {
 	return isprint(ch)? ch: '.';
