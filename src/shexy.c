@@ -80,7 +80,7 @@ void print_color(arg_formats_t format, char8_t *buf, int buf_len, size_t sz, siz
 	}
 
 	print_spaces((buf_len - sz) * padding);
-	if (iseven && sz < mid) {
+	if (iseven && sz <= mid) {
 		print_spaces(1);
 	}
 	printf("|");
@@ -126,7 +126,7 @@ void print_bw(arg_formats_t format, char8_t *buf, int buf_len, size_t sz, size_t
 		fun(buf[i]);
 		print_spaces(1);
 	}
-	if (iseven && sz < mid) {
+	if (iseven && sz <= mid) {
 		print_spaces(1);
 	}
 	print_spaces((buf_len - sz) * padding);
